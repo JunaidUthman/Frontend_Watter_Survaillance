@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 import { RefreshCw, Zap, Activity, Thermometer, Droplets, Clock } from 'lucide-react';
 
-const API_URL = import.meta.env.BACKEND_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:5000';
 
 const Dashboard = ({ isConnected, lastReading }) => {
     const [history, setHistory] = useState([]);
@@ -96,7 +96,7 @@ const Dashboard = ({ isConnected, lastReading }) => {
                     {loading && history.length === 0 ? (
                         <div style={centerStyle}>Synchronizing...</div>
                     ) : (
-                        <ResponsiveContainer width="100%" height="85%">
+                        <ResponsiveContainer width="100%" height="85%" minHeight={0}>
                             <LineChart data={history}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
                                 <XAxis
@@ -168,7 +168,7 @@ const Dashboard = ({ isConnected, lastReading }) => {
                         {loading ? (
                             <div style={centerStyle}>Calculating averages...</div>
                         ) : (
-                            <ResponsiveContainer width="100%" height="100%">
+                            <ResponsiveContainer width="100%" height="100%" minHeight={0}>
                                 <BarChart data={[
                                     { name: 'pH', value: stats?.avgPh },
                                     { name: 'Temp', value: stats?.avgTemp },
@@ -236,7 +236,7 @@ const GaugeCard = ({ title, value, min, max, color, unit }) => {
         <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem' }}>
             <h4 style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginBottom: '1rem', textTransform: 'uppercase', fontWeight: '700' }}>{title}</h4>
             <div style={{ position: 'relative', width: '200px', height: '120px' }}>
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" minHeight={0}>
                     <PieChart>
                         <Pie
                             data={data}
