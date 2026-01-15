@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 
-const SOCKET_URL = import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:5000';
+const SOCKET_URL = 'https://wattersurveillanceapp-cjcmatdsevbre7bd.spaincentral-01.azurewebsites.net';
 
 export const useSocket = () => {
     const [socket, setSocket] = useState(null);

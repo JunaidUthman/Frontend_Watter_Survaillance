@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 import { RefreshCw, Zap, Activity, Thermometer, Droplets, Clock } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:5000';
+const API_URL = 'https://wattersurveillanceapp-cjcmatdsevbre7bd.spaincentral-01.azurewebsites.net';
 
 const Dashboard = ({ isConnected, lastReading }) => {
     const [history, setHistory] = useState([]);
