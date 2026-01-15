@@ -5,7 +5,7 @@ import { Loader2, Download, FileText, Droplets } from 'lucide-react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.BACKEND_API_URL || 'http://localhost:5000';
 
 const Reports = () => {
     const [stats, setStats] = useState(null);

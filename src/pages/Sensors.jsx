@@ -15,7 +15,7 @@ import {
     Shield
 } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.BACKEND_API_URL || 'http://localhost:5000';
 
 const Sensors = ({ lastReading }) => {
     const [sensors, setSensors] = useState([]);

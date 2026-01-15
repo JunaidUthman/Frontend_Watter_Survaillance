@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 import { RefreshCw, Zap, Activity, Thermometer, Droplets, Clock } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.BACKEND_API_URL || 'http://localhost:5000';
 
 const Dashboard = ({ isConnected, lastReading }) => {
     const [history, setHistory] = useState([]);
