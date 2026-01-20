@@ -106,36 +106,39 @@ const Sensors = ({ lastReading }) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {sensors.map((sensor) => (
-                                        <tr key={sensor._id}>
-                                            <td style={{ fontWeight: '700', color: 'white' }}>
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: sensor.status === 'working' ? 'var(--success)' : 'var(--danger)' }} />
-                                                    {sensor.name}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                                    <div style={smallIconBox}>{getFuncIcon(sensor.functionality)}</div>
-                                                    <span style={{ textTransform: 'uppercase', fontWeight: '700', fontSize: '0.75rem', letterSpacing: '0.5px' }}>
-                                                        {sensor.functionality}
+                                    {sensors
+                                        /* Supprimer l'affichage des sensors TD (7 et 8) comme demandé */
+                                        .filter(sensor => !['sensor7', 'sensor8'].includes(sensor.name))
+                                        .map((sensor) => (
+                                            <tr key={sensor._id}>
+                                                <td style={{ fontWeight: '700', color: 'white' }}>
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: sensor.status === 'working' ? 'var(--success)' : 'var(--danger)' }} />
+                                                        {sensor.name}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                                        <div style={smallIconBox}>{getFuncIcon(sensor.functionality)}</div>
+                                                        <span style={{ textTransform: 'uppercase', fontWeight: '700', fontSize: '0.75rem', letterSpacing: '0.5px' }}>
+                                                            {sensor.functionality}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span className={`status-badge ${sensor.status === 'working' ? 'status-working' : 'status-broken'}`}>
+                                                        {sensor.status === 'working' ? <CheckCircle2 size={13} /> : <AlertCircle size={13} />}
+                                                        {sensor.status === 'working' ? 'Operational' : 'Broken'}
                                                     </span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span className={`status-badge ${sensor.status === 'working' ? 'status-working' : 'status-broken'}`}>
-                                                    {sensor.status === 'working' ? <CheckCircle2 size={13} /> : <AlertCircle size={13} />}
-                                                    {sensor.status === 'working' ? 'Operational' : 'Broken'}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                                    <span style={{ color: 'white', fontSize: '0.85rem', fontWeight: '500' }}>Active</span>
-                                                    <span style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>Syncing with Cloud</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))}
+                                                </td>
+                                                <td>
+                                                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                        <span style={{ color: 'white', fontSize: '0.85rem', fontWeight: '500' }}>Active</span>
+                                                        <span style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>Syncing with Cloud</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
                                 </tbody>
                             </table>
                         </div>

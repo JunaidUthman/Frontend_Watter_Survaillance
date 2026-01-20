@@ -319,21 +319,24 @@ const Reports = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {stats?.sensors?.concat(stats?.actuators || []).map((item, idx) => (
-                                        <tr key={idx} style={{ borderBottom: '1px solid #edf2f7' }}>
-                                            <td style={{ padding: '10px 12px', fontWeight: '700' }}>{item.name}</td>
-                                            <td style={{ padding: '10px 12px' }}>{item.type ? 'SENSOR' : 'ACTUATOR'}</td>
-                                            <td style={{
-                                                padding: '10px 12px',
-                                                fontWeight: '800',
-                                                color: (item.status?.toUpperCase() === 'ACTIF' || item.status?.toUpperCase() === 'ON' || item.status?.toUpperCase() === 'WORKING')
-                                                    ? '#059669' // Green for working
-                                                    : '#dc2626' // Red for broken/off
-                                            }}>
-                                                {item.status?.toUpperCase()}
-                                            </td>
-                                        </tr>
-                                    ))}
+                                    {stats?.sensors?.concat(stats?.actuators || [])
+                                        /* Supprimer l'affichage des sensors TD (7 et 8) comme demandé */
+                                        .filter(item => !['sensor7', 'sensor8'].includes(item.name))
+                                        .map((item, idx) => (
+                                            <tr key={idx} style={{ borderBottom: '1px solid #edf2f7' }}>
+                                                <td style={{ padding: '10px 12px', fontWeight: '700' }}>{item.name}</td>
+                                                <td style={{ padding: '10px 12px' }}>{item.type ? 'SENSOR' : 'ACTUATOR'}</td>
+                                                <td style={{
+                                                    padding: '10px 12px',
+                                                    fontWeight: '800',
+                                                    color: (item.status?.toUpperCase() === 'ACTIF' || item.status?.toUpperCase() === 'ON' || item.status?.toUpperCase() === 'WORKING')
+                                                        ? '#059669' // Green for working
+                                                        : '#dc2626' // Red for broken/off
+                                                }}>
+                                                    {item.status?.toUpperCase()}
+                                                </td>
+                                            </tr>
+                                        ))}
                                 </tbody>
                             </table>
                         </div>
